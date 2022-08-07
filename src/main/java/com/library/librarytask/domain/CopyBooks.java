@@ -16,6 +16,7 @@ public class CopyBooks {
     private Long idCopy;
     private Books books;
     private String status;
+    private Rents rents;
 
     @Id
     @GeneratedValue
@@ -41,7 +42,7 @@ public class CopyBooks {
     }
 
     @ManyToOne
-    @JoinColumn(name = "books_id")
+    @JoinColumn(name = "BOOKS_ID")
     public Books getBooks() {
         return books;
     }
@@ -58,5 +59,15 @@ public class CopyBooks {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "RENTS_ID")
+    public Rents getRents() {
+        return rents;
+    }
+
+    public void setRents(Rents rents) {
+        this.rents = rents;
     }
 }

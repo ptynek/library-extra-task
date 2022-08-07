@@ -21,7 +21,7 @@ public class Books {
     @NotNull
     @GeneratedValue
     @Id
-    @Column(name = "Id")
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }

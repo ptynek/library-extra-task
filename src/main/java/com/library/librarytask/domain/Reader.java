@@ -15,6 +15,7 @@ public final class Reader {
     private String firstName;
     private String lastName;
     private Date accountCreated;
+    private Rents rents;
 
     @Id
     @GeneratedValue
@@ -56,5 +57,15 @@ public final class Reader {
 
     public void setAccountCreated(Date accountCreated) {
         this.accountCreated = accountCreated;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "RENTS_ID")
+    public Rents getRents() {
+        return rents;
+    }
+
+    public void setRents(Rents rents) {
+        this.rents = rents;
     }
 }

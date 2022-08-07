@@ -1,11 +1,11 @@
 package com.library.librarytask.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -20,6 +20,10 @@ public class Rents {
     private Date returnDate;
 
 
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }
@@ -28,6 +32,7 @@ public class Rents {
         this.id = id;
     }
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public CopyBooks getCopyBooks() {
         return copyBooks;
     }
@@ -36,6 +41,7 @@ public class Rents {
         this.copyBooks = copyBooks;
     }
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Reader getReader() {
         return reader;
     }
@@ -44,6 +50,8 @@ public class Rents {
         this.reader = reader;
     }
 
+    @NotNull
+    @Column(name = "RENT_DATE")
     public Date getRentDate() {
         return rentDate;
     }
@@ -52,6 +60,8 @@ public class Rents {
         this.rentDate = rentDate;
     }
 
+    @NotNull
+    @Column(name = "RETURN_DATE")
     public Date getReturnDate() {
         return returnDate;
     }
