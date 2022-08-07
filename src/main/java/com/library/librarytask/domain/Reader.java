@@ -1,10 +1,12 @@
 package com.library.librarytask.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "READER")
 public final class Reader {

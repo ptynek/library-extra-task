@@ -1,9 +1,13 @@
 package com.library.librarytask.domain;
 
 import com.sun.istack.NotNull;
+import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Data
 @Entity
 @Table(name = "BOOKS")
 public class Books {
@@ -12,6 +16,7 @@ public class Books {
     private String title;
     private String author;
     private int publicationYear;
+    private List<CopyBooks> copyBooks = new ArrayList<>();
 
     @NotNull
     @GeneratedValue
@@ -53,5 +58,19 @@ public class Books {
 
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
+    }
+
+    @OneToMany(
+            targetEntity = CopyBooks.class,
+            mappedBy = "idCopy",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<CopyBooks> getCopyBooks() {
+        return copyBooks;
+    }
+
+    public void setCopyBooks(List<CopyBooks> copyBooks) {
+        this.copyBooks = copyBooks;
     }
 }
