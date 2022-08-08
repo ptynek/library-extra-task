@@ -18,6 +18,15 @@ public class CopyBooks {
     private String status;
     private Rents rents;
 
+    public CopyBooks() {
+    }
+
+    public CopyBooks(Long idCopy, Books books, String status) {
+        this.idCopy = idCopy;
+        this.books = books;
+        this.status = status;
+    }
+
     @Id
     @GeneratedValue
     @NotNull

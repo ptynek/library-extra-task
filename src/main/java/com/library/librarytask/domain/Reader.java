@@ -4,9 +4,9 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
-@Data
 @Entity
 @Table(name = "READER")
 public final class Reader {
@@ -14,8 +14,19 @@ public final class Reader {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date accountCreated;
+
+    private LocalDate accountCreated;
     private Rents rents;
+
+    public Reader(){
+
+    }
+
+    public Reader(String firstName, String lastName, LocalDate accountCreated) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountCreated = accountCreated;
+    }
 
     @Id
     @GeneratedValue
@@ -51,11 +62,11 @@ public final class Reader {
 
     @NotNull
     @Column(name = "ACCOUNT_CREATED")
-    public Date getAccountCreated() {
+    public LocalDate getAccountCreated() {
         return accountCreated;
     }
 
-    public void setAccountCreated(Date accountCreated) {
+    public void setAccountCreated(LocalDate accountCreated) {
         this.accountCreated = accountCreated;
     }
 

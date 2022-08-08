@@ -6,29 +6,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
-@Data
 @Entity
 @Table(name = "RENTS")
 public class Rents {
 
-    private Long id;
+    private int id;
     private CopyBooks copyBooks;
     private Reader reader;
     private Date rentDate;
-    private Date returnDate;
+    private LocalDate returnDate;
 
+    public Rents() {
+    }
+
+    public Rents(CopyBooks copyBooks, Reader reader) {
+        this.copyBooks = copyBooks;
+        this.reader = reader;
+        this.rentDate = new Date();
+    }
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "ID")
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,13 +68,13 @@ public class Rents {
         this.rentDate = rentDate;
     }
 
-    @NotNull
+
     @Column(name = "RETURN_DATE")
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 }

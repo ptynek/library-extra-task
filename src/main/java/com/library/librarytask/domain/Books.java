@@ -18,6 +18,15 @@ public class Books {
     private int publicationYear;
     private List<CopyBooks> copyBooks = new ArrayList<>();
 
+    public Books(){
+
+    }
+    public Books(String title, String author, int publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
+
     @NotNull
     @GeneratedValue
     @Id
