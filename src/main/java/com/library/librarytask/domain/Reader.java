@@ -36,5 +36,6 @@ public class Reader {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.accountCreated = LocalDate.now();
     }
 }

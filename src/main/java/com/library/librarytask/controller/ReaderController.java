@@ -5,6 +5,9 @@ import com.library.librarytask.domain.ReaderDto;
 import com.library.librarytask.mapper.ReaderMapper;
 import com.library.librarytask.serivce.ReaderDbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,28 +22,33 @@ public class ReaderController {
     private final ReaderMapper readerMapper;
 
     @GetMapping
-    public List<ReaderDto> getReaders(){
+    public ResponseEntity<List<ReaderDto>> getReaders(){
         List<Reader> readers = readerDbService.getAllReaders();
-        return readerMapper.mapToReaderDtoList(readers);
+        return ResponseEntity.ok(readerMapper.mapToReaderDtoList(readers));
     }
 
     @GetMapping(value = "{readerId}")
-    public ReaderDto getReader(@PathVariable int readerId){
-        return new ReaderDto(1, "Jan", "Kowalski");
+    public ResponseEntity<ReaderDto> getReader(@PathVariable int readerId) throws TaskNotFoundException{
+        return ResponseEntity.ok(readerMapper.mapToReaderDto(readerDbService.getReader(readerId)));
     }
 
-    @DeleteMapping
-    public void deleteReader(){
-
+    @DeleteMapping(value = "{readerId}")
+    public ResponseEntity<Void> deleteReader(@PathVariable int readerId){
+        readerDbService.deleteReader(readerId);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public ReaderDto updateReader(ReaderDto readerDto){
-        return new ReaderDto(1, "Szymon", "Kasperczyk");
+    public ResponseEntity<ReaderDto> updateReader(@RequestBody ReaderDto readerDto){
+        Reader reader = readerMapper.mapToReader(readerDto);
+        Reader savedReader = readerDbService.saveReader(reader);
+        return ResponseEntity.ok(readerMapper.mapToReaderDto(savedReader));
     }
 
-    @PostMapping
-    public void createReader(Reader reader){
-
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createReader(@RequestBody ReaderDto readerDto){
+        Reader reader = readerMapper.mapToReader(readerDto);
+        readerDbService.saveReader(reader);
+        return ResponseEntity.ok().build();
     }
 }
