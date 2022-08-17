@@ -6,6 +6,7 @@ import com.library.librarytask.domain.TitleDto;
 import com.library.librarytask.mapper.TitleMapper;
 import com.library.librarytask.serivce.TitleDbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +41,11 @@ public class TitleController {
     @PutMapping
     public ResponseEntity<TitleDto> updateTitle(@RequestBody TitleDto titleDto){
         Title title = mapper.mapToTile(titleDto);
-        Title savedTitle = service.saveTitle(title)
+        Title savedTitle = service.saveTitle(title);
         return ResponseEntity.ok(mapper.mapToTitleDto(savedTitle));
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createTitle(@RequestBody TitleDto titleDto){
         Title title = mapper.mapToTile(titleDto);
         service.saveTitle(title);
