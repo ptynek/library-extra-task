@@ -35,4 +35,6 @@ public class CopyBook {
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "copyBookList")
     private List<Rents> rentsList;
+
+
 }

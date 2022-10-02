@@ -25,4 +25,8 @@ public class Status {
     @Column(name = "STATUS")
     private String status;
 
+    public Status(int id) {
+        this.id = id;
+        this.status = status;
+    }
 }
