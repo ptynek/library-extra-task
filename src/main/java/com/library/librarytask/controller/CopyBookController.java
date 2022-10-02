@@ -1,8 +1,15 @@
 package com.library.librarytask.controller;
 
-import com.library.librarytask.domain.CopyBookDto;
+import com.library.librarytask.domain.CopyBook;
+import com.library.librarytask.domain.dto.CopyBookDto;
 import com.library.librarytask.domain.Title;
 import com.library.librarytask.helpers.Status;
+import com.library.librarytask.mapper.CopyBookMapper;
+import com.library.librarytask.repository.CopyBookRepository;
+import com.library.librarytask.serivce.CopyBookDbService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,35 +17,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/copybooks")
+@RequiredArgsConstructor
 public class CopyBookController {
 
-    List<CopyBookDto> getCopyBooks(){
-        return new ArrayList<>();
+    private final CopyBookMapper mapper;
+    private final CopyBookDbService dbService;
+
+    @GetMapping
+    public ResponseEntity<List<CopyBookDto>> getCopyBooks(){
+        List<CopyBook> copybooks = dbService.getAllCopyBooks();
+        return ResponseEntity.ok(mapper.mapToCopyBookDtoList(copybooks));
     }
 
     @GetMapping(value = "{copybooksId}")
-    public CopyBookDto getCopyBook(@PathVariable int copybooksId){
-        Title title = new Title(1, "Title1", "Author 1", 2005);
-        Status status = new Status();
-        String stat = status.statusList().get(0);
-        return new CopyBookDto(1, title, stat);
-    }
-
-    @DeleteMapping
-    public void deleteCopyBook(){
-
+    public ResponseEntity<CopyBookDto> getCopyBook(@PathVariable long copybooksId) throws TaskNotFoundException{
+        return ResponseEntity.ok(mapper.mapToCopyBookDto(dbService.getCopyBookById(copybooksId)));
     }
 
     @PutMapping
-    public CopyBookDto updateCopyBook(CopyBookDto copyBookDto){
-        Title title = new Title(1, "Title1", "Author 1", 2005);
-        Status status = new Status();
-        String stat = status.statusList().get(1); //different status
-        return new CopyBookDto(1, title, stat);
+    public ResponseEntity<CopyBookDto> updateCopyBook(@RequestBody CopyBookDto copyBookDto){
+        CopyBook copyBook = mapper.mapToCopyBook(copyBookDto);
+        CopyBook savedCopyBook = dbService.saveCopyBook(copyBook);
+        return ResponseEntity.ok(mapper.mapToCopyBookDto(savedCopyBook));
     }
 
-    @PostMapping
-    public void createCopyBook(CopyBookDto copyBookDto){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createCopyBook(@RequestBody CopyBookDto copyBookDto){
+        CopyBook copyBook = mapper.mapToCopyBook(copyBookDto);
+        dbService.saveCopyBook(copyBook);
 
+        return ResponseEntity.ok().build();
     }
+
+
 }

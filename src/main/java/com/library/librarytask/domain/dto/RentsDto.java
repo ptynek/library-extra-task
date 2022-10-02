@@ -1,5 +1,7 @@
-package com.library.librarytask.domain;
+package com.library.librarytask.domain.dto;
 
+import com.library.librarytask.domain.CopyBook;
+import com.library.librarytask.domain.Reader;
 import lombok.Getter;
 
 import java.util.Date;

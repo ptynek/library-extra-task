@@ -11,12 +11,5 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class LibraryTaskTestSuite {
 
-    @Test
-    void createUserTest(){
-        Reader reader = new Reader(1, "Piotr", "Kowalczyk", LocalDate.now());
 
-        int id = reader.getId();
-
-        assertEquals(1, id);
-    }
 }

@@ -1,7 +1,7 @@
 package com.library.librarytask.mapper;
 
 import com.library.librarytask.domain.Title;
-import com.library.librarytask.domain.TitleDto;
+import com.library.librarytask.domain.dto.TitleDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,8 @@ public class TitleMapper {
                 titleDto.getId(),
                 titleDto.getTitle(),
                 titleDto.getAuthor(),
-                titleDto.getPublicationYear()
+                titleDto.getPublicationYear(),
+                titleDto.getCopyBookList()
         );
     }
 
@@ -24,7 +25,8 @@ public class TitleMapper {
                 title.getId(),
                 title.getTitle(),
                 title.getAuthor(),
-                title.getPublicationYear()
+                title.getPublicationYear(),
+                title.getCopyBooksList()
         );
     }
 

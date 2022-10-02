@@ -2,7 +2,7 @@ package com.library.librarytask.controller;
 
 
 import com.library.librarytask.domain.Title;
-import com.library.librarytask.domain.TitleDto;
+import com.library.librarytask.domain.dto.TitleDto;
 import com.library.librarytask.mapper.TitleMapper;
 import com.library.librarytask.serivce.TitleDbService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

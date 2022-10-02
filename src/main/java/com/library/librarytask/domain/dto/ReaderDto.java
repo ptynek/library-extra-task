@@ -1,4 +1,4 @@
-package com.library.librarytask.domain;
+package com.library.librarytask.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

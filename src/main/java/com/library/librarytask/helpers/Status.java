@@ -1,29 +1,28 @@
 package com.library.librarytask.helpers;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.library.librarytask.domain.CopyBook;
+import com.sun.istack.NotNull;
+import lombok.*;
 
+import javax.persistence.*;
 import java.util.*;
 
-@Getter
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity(name = "STATUS")
 public class Status {
 
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ID", unique = true)
     private int id;
+
+    @Column(name = "STATUS")
     private String status;
-
-    public List<String> statusList(){
-        List<String> statuses = new LinkedList<>();
-        statuses.add("W obiegu");
-        statuses.add("Zniszczona");
-        statuses.add("Zagubiona");
-
-        return statuses;
-    }
-
 
 }
