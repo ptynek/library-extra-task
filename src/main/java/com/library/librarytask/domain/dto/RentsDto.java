@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 public class RentsDto {
 
-    private int id;
+    private long id;
     private CopyBook copyBook;
     private Reader reader;
     private Date rentDate;
@@ -20,5 +20,12 @@ public class RentsDto {
         this.copyBook = copyBook;
         this.reader = reader;
         this.rentDate = new Date();
+    }
+
+    public RentsDto(long id, Reader reader, Date rentDate, Date returnDate) {
+        this.id = id;
+        this.reader = reader;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
     }
 }

@@ -1,4 +1,4 @@
-package com.library.librarytask.helpers;
+package com.library.librarytask.domain;
 
 
 import com.library.librarytask.domain.CopyBook;

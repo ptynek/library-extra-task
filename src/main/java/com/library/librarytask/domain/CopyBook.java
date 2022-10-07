@@ -1,7 +1,7 @@
 package com.library.librarytask.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.library.librarytask.helpers.Status;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,5 +36,9 @@ public class CopyBook {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "copyBookList")
     private List<Rents> rentsList;
 
-
+    public CopyBook(long id, Title title, Status status) {
+        this.id = id;
+        this.title = title;
+        this.status = status;
+    }
 }

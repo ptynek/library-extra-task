@@ -44,5 +44,10 @@ public class Rents {
     @Column(name = "RETURN_DATE")
     private Date returnDate;
 
-
+    public Rents(long id, Reader reader, Date rentDate, Date returnDate) {
+        this.id = id;
+        this.reader = reader;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
 }
