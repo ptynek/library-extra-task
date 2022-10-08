@@ -2,6 +2,7 @@ package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.dto.CopyBookDto;
+import com.library.librarytask.exceptions.CopyBookException;
 import com.library.librarytask.mapper.CopyBookMapper;
 import com.library.librarytask.serivce.CopyBookDbService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class CopyBookController {
     }
 
     @GetMapping(value = "{copybooksId}")
-    public ResponseEntity<CopyBookDto> getCopyBook(@PathVariable long copybooksId) throws TaskNotFoundException{
+    public ResponseEntity<CopyBookDto> getCopyBook(@PathVariable long copybooksId) throws CopyBookException {
         return ResponseEntity.ok(mapper.mapToCopyBookDto(dbService.getCopyBookById(copybooksId)));
     }
 

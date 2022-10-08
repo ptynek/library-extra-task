@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RentsRepository  extends CrudRepository<Rents, Integer> {
+public interface RentsRepository  extends CrudRepository<Rents, Long> {
 
     @Override
     List<Rents> findAll();
 
     @Override
-    Optional<Rents> findById(Integer id);
+    Optional<Rents> findById(Long id);
 
     @Override
     Rents save(final Rents rents);

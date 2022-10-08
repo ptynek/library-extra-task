@@ -1,16 +1,12 @@
 package com.library.librarytask.mapper;
 
 import com.library.librarytask.controller.TaskNotFoundException;
-import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.Rents;
-import com.library.librarytask.domain.dto.CopyBookDto;
 import com.library.librarytask.domain.dto.RentsDto;
 import com.library.librarytask.serivce.CopyBookDbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

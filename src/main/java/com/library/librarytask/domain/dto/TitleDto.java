@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TitleDto {
 
-    private int id;
+    private long id;
     private String title;
     private String author;
     private int publicationYear;

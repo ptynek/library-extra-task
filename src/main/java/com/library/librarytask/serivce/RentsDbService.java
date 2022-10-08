@@ -2,6 +2,7 @@ package com.library.librarytask.serivce;
 
 import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.Rents;
+import com.library.librarytask.exceptions.RentsException;
 import com.library.librarytask.repository.RentsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class RentsDbService {
         return repository.findAll();
     }
 
-    public Rents getRents(final int rentsId) throws TaskNotFoundException {
-        return repository.findById(rentsId).orElseThrow(TaskNotFoundException::new);
+    public Rents getRents(final long rentsId) throws RentsException {
+        return repository.findById(rentsId).orElseThrow(RentsException::new);
     }
 
     public Rents saveRent(final Rents rents){

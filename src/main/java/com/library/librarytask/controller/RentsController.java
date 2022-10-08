@@ -2,6 +2,7 @@ package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.Rents;
 import com.library.librarytask.domain.dto.RentsDto;
+import com.library.librarytask.exceptions.RentsException;
 import com.library.librarytask.mapper.RentsMapper;
 import com.library.librarytask.serivce.RentsDbService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class RentsController {
     }
 
     @GetMapping(value = "{rentsId}")
-    public ResponseEntity<RentsDto> getRent(@PathVariable int rentsId) throws TaskNotFoundException{
+    public ResponseEntity<RentsDto> getRent(@PathVariable int rentsId) throws RentsException {
         return ResponseEntity.ok(mapper.mapToRentsDto(service.getRents(rentsId)));
     }
 

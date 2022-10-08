@@ -2,6 +2,7 @@ package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.Reader;
 import com.library.librarytask.domain.dto.ReaderDto;
+import com.library.librarytask.exceptions.ReaderException;
 import com.library.librarytask.mapper.ReaderMapper;
 import com.library.librarytask.serivce.ReaderDbService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class ReaderController {
     }
 
     @GetMapping(value = "{readerId}")
-    public ResponseEntity<ReaderDto> getReader(@PathVariable int readerId) throws TaskNotFoundException{
+    public ResponseEntity<ReaderDto> getReader(@PathVariable int readerId) throws ReaderException {
         return ResponseEntity.ok(readerMapper.mapToReaderDto(readerDbService.getReader(readerId)));
     }
 

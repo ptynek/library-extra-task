@@ -12,10 +12,13 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface StatusRepository extends CrudRepository<Status, Integer> {
+public interface StatusRepository extends CrudRepository<Status, Long> {
 
     @Override
-    Optional<Status> findById(Integer id);
+    Optional<Status> findById(Long id);
+
+    @Override
+    Status save(Status status);
 
 
     @Modifying

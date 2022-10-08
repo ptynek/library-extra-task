@@ -3,6 +3,7 @@ package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.Title;
 import com.library.librarytask.domain.dto.TitleDto;
+import com.library.librarytask.exceptions.TitleException;
 import com.library.librarytask.mapper.TitleMapper;
 import com.library.librarytask.serivce.TitleDbService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class TitleController {
     }
 
     @GetMapping(value = "{titleId}")
-    public ResponseEntity<TitleDto> getTitle(@PathVariable int titleId) throws TaskNotFoundException {
+    public ResponseEntity<TitleDto> getTitle(@PathVariable int titleId) throws TitleException {
         return ResponseEntity.ok(mapper.mapToTitleDto(service.getTitle(titleId)));
     }
 

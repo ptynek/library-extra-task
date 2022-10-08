@@ -3,14 +3,10 @@ package com.library.librarytask.domain.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
-
-@AllArgsConstructor
 @Getter
-public class ReaderDto {
+@AllArgsConstructor
+public class StatusDto {
 
     private long id;
-    private String firstName;
-    private String lastName;
-
+    private String status;
 }

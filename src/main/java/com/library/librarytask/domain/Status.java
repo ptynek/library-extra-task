@@ -17,16 +17,15 @@ import java.util.*;
 public class Status {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "ID", unique = true)
-    private int id;
+    private long id;
 
     @Column(name = "STATUS")
     private String status;
 
-    public Status(int id) {
-        this.id = id;
+    public Status(String status) {
         this.status = status;
     }
 }

@@ -15,9 +15,9 @@ import java.util.List;
 public class Title {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true)
-    private int id;
+    private long id;
 
     @NotNull
     @Column(name = "TITLE")
@@ -36,10 +36,13 @@ public class Title {
             targetEntity = CopyBook.class,
             mappedBy = "status",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<CopyBook> copyBooksList;
 
-
-
+    public Title(String title, String author, int publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
 }

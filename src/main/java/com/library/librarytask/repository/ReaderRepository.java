@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ReaderRepository extends CrudRepository<Reader, Integer> {
+public interface ReaderRepository extends CrudRepository<Reader, Long> {
 
     @Override
     List<Reader> findAll();
 
     @Override
-    Optional<Reader> findById(Integer id);
+    Optional<Reader> findById(Long id);
 
     @Override
     Reader save(final Reader reader);

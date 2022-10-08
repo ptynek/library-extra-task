@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,15 +21,15 @@ import java.util.List;
 public class Rents {
 
     @Id
-    @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "RENTS_ID", unique = true)
     private long id;
 
-    @JsonIgnore
+
     @ManyToMany
     @JoinTable(
             name = "JOIN_COPYBOOKS_ID",
-            joinColumns = {@JoinColumn(name ="ID", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name ="RENTS_ID", referencedColumnName = "RENTS_ID")},
             inverseJoinColumns = {@JoinColumn(name = "COPYBOOK_ID", referencedColumnName = "COPYBOOK_ID")}
     )
     private List<CopyBook> copyBookList;
@@ -39,13 +40,20 @@ public class Rents {
 
     @NotNull
     @Column(name = "RENT_DATE")
-    private Date rentDate;
+    private LocalDate rentDate;
 
     @Column(name = "RETURN_DATE")
-    private Date returnDate;
+    private LocalDate returnDate;
 
-    public Rents(long id, Reader reader, Date rentDate, Date returnDate) {
+    public Rents(long id, Reader reader, LocalDate rentDate, LocalDate returnDate) {
         this.id = id;
+        this.reader = reader;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
+
+    public Rents(List<CopyBook> copyBookList, Reader reader, LocalDate rentDate, LocalDate returnDate) {
+        this.copyBookList = copyBookList;
         this.reader = reader;
         this.rentDate = rentDate;
         this.returnDate = returnDate;

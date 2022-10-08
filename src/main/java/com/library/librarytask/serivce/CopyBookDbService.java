@@ -2,6 +2,7 @@ package com.library.librarytask.serivce;
 
 import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.CopyBook;
+import com.library.librarytask.exceptions.CopyBookException;
 import com.library.librarytask.repository.CopyBookRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class CopyBookDbService {
         return copyBookRepository.findAll();
     }
 
-    public CopyBook getCopyBookById(final Long id) throws TaskNotFoundException{
-        return copyBookRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+    public CopyBook getCopyBookById(final Long id) throws CopyBookException {
+        return copyBookRepository.findById(id).orElseThrow(CopyBookException::new);
     }
 
     public CopyBook saveCopyBook(final CopyBook copyBook){

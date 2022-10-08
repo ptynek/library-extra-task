@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.bytebuddy.asm.Advice;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -20,8 +17,8 @@ import java.util.Date;
 public class Reader {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -32,8 +29,20 @@ public class Reader {
     @Column(name = "ACCOUNT_CREATED")
     private LocalDate accountCreated;
 
-    public Reader(int id, String firstName, String lastName) {
+    public Reader(long id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountCreated = LocalDate.now();
+    }
+
+    public Reader(String firstName, String lastName, LocalDate accountCreated) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountCreated = accountCreated;
+    }
+
+    public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountCreated = LocalDate.now();
