@@ -2,6 +2,7 @@ package com.library.librarytask.mapper;
 
 
 import com.library.librarytask.domain.Reader;
+import com.library.librarytask.domain.dto.ReaderCreateDto;
 import com.library.librarytask.domain.dto.ReaderDto;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,15 @@ public class ReaderMapper {
                 reader.getId(),
                 reader.getFirstName(),
                 reader.getLastName()
+        );
+    }
+
+    public Reader mapToReaderCreate(final ReaderCreateDto readerCreateDto){
+        return new Reader(
+                readerCreateDto.getId(),
+                readerCreateDto.getFirstName(),
+                readerCreateDto.getLastName(),
+                readerCreateDto.getAccountCreated()
         );
     }
 

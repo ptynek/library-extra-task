@@ -1,6 +1,7 @@
 package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.Reader;
+import com.library.librarytask.domain.dto.ReaderCreateDto;
 import com.library.librarytask.domain.dto.ReaderDto;
 import com.library.librarytask.exceptions.ReaderException;
 import com.library.librarytask.mapper.ReaderMapper;
@@ -49,8 +50,8 @@ public class ReaderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createReader(@RequestBody ReaderDto readerDto){
-        Reader reader = readerMapper.mapToReader(readerDto);
+    public ResponseEntity<Void> createReader(@RequestBody ReaderCreateDto readerDto){
+        Reader reader = readerMapper.mapToReaderCreate(readerDto);
         readerDbService.saveReader(reader);
         return ResponseEntity.ok().build();
     }

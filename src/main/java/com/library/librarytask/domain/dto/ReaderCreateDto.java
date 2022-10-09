@@ -3,18 +3,21 @@ package com.library.librarytask.domain.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@AllArgsConstructor
 @Getter
-public class ReaderDto {
+
+public class ReaderCreateDto {
 
     private long id;
     private String firstName;
     private String lastName;
+    private LocalDate accountCreated;
 
-    public ReaderDto(String firstName, String lastName) {
+    public ReaderCreateDto(long id, String firstName, String lastName, LocalDate accountCreated) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.accountCreated = accountCreated;
     }
 }
