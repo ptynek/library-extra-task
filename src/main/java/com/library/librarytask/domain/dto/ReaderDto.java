@@ -13,8 +13,5 @@ public class ReaderDto {
     private String firstName;
     private String lastName;
 
-    public ReaderDto(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+
 }

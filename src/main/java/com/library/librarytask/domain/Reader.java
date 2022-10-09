@@ -41,15 +41,6 @@ public class Reader {
         this.accountCreated = LocalDate.now();
     }
 
-    public Reader(String firstName, String lastName, LocalDate accountCreated) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.accountCreated = accountCreated;
-    }
 
-    public Reader(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.accountCreated = LocalDate.now();
-    }
+
 }

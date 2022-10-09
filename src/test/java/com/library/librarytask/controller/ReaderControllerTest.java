@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,7 +71,7 @@ class ReaderControllerTest {
 
     @Test
     void testCreateUser() throws Exception{
-        ReaderCreateDto readerCreateDto = new ReaderCreateDto(1, "Sarah", "Jones", LocalDate.now());
+        ReaderCreateDto readerCreateDto = new ReaderCreateDto(200, "Sarah", "Jones");
         Gson gson = new Gson();
         String jsonContent = gson.toJson(readerCreateDto);
 

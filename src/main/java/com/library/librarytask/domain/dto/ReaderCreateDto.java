@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-
+@AllArgsConstructor
 public class ReaderCreateDto {
 
     private long id;
@@ -14,10 +14,10 @@ public class ReaderCreateDto {
     private String lastName;
     private LocalDate accountCreated;
 
-    public ReaderCreateDto(long id, String firstName, String lastName, LocalDate accountCreated) {
+    public ReaderCreateDto(long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accountCreated = accountCreated;
+        this.accountCreated = LocalDate.now();
     }
 }
