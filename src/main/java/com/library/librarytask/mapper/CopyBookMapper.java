@@ -15,8 +15,7 @@ public class CopyBookMapper {
         return new CopyBook(
                 copyBookDto.getId(),
                 copyBookDto.getTitle(),
-                copyBookDto.getStatus(),
-                copyBookDto.getRentsList()
+                copyBookDto.getStatus()
         );
     }
 
@@ -24,8 +23,7 @@ public class CopyBookMapper {
         return new CopyBookDto(
                 copyBook.getId(),
                 copyBook.getTitle(),
-                copyBook.getStatus(),
-                copyBook.getRentsList()
+                copyBook.getStatus()
         );
     }
 

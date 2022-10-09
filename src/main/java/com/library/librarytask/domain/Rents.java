@@ -1,6 +1,7 @@
 package com.library.librarytask.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,16 +26,11 @@ public class Rents {
     @Column(name = "RENTS_ID", unique = true)
     private long id;
 
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "COPYBOOK_ID")
+    private CopyBook copybook;
 
-    @ManyToMany
-    @JoinTable(
-            name = "JOIN_COPYBOOKS_ID",
-            joinColumns = {@JoinColumn(name ="RENTS_ID", referencedColumnName = "RENTS_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "COPYBOOK_ID", referencedColumnName = "COPYBOOK_ID")}
-    )
-    private List<CopyBook> copyBookList;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "READER_ID")
     private Reader reader;
 
@@ -52,8 +48,8 @@ public class Rents {
         this.returnDate = returnDate;
     }
 
-    public Rents(List<CopyBook> copyBookList, Reader reader, LocalDate rentDate, LocalDate returnDate) {
-        this.copyBookList = copyBookList;
+    public Rents(CopyBook copybook, Reader reader, LocalDate rentDate, LocalDate returnDate) {
+        this.copybook = copybook;
         this.reader = reader;
         this.rentDate = rentDate;
         this.returnDate = returnDate;

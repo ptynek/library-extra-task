@@ -1,6 +1,5 @@
 package com.library.librarytask.serivce;
 
-import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.Title;
 import com.library.librarytask.exceptions.TitleException;
 import com.library.librarytask.repository.TitleRepository;

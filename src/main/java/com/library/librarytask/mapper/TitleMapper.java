@@ -15,8 +15,7 @@ public class TitleMapper {
                 titleDto.getId(),
                 titleDto.getTitle(),
                 titleDto.getAuthor(),
-                titleDto.getPublicationYear(),
-                titleDto.getCopyBookList()
+                titleDto.getPublicationYear()
         );
     }
 
@@ -25,8 +24,7 @@ public class TitleMapper {
                 title.getId(),
                 title.getTitle(),
                 title.getAuthor(),
-                title.getPublicationYear(),
-                title.getCopyBooksList()
+                title.getPublicationYear()
         );
     }
 

@@ -1,6 +1,5 @@
 package com.library.librarytask.mapper;
 
-import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.Rents;
 import com.library.librarytask.domain.dto.RentsDto;
 import com.library.librarytask.serivce.CopyBookDbService;
@@ -19,6 +18,7 @@ public class RentsMapper {
     public Rents mapToRents(final RentsDto rentsDto) {
         return new Rents(
                 rentsDto.getId(),
+                rentsDto.getCopyBook(),
                 rentsDto.getReader(),
                 rentsDto.getRentDate(),
                 rentsDto.getReturnDate()
@@ -28,6 +28,7 @@ public class RentsMapper {
     public RentsDto mapToRentsDto(final Rents rents) {
         return new RentsDto(
                 rents.getId(),
+                rents.getCopybook(),
                 rents.getReader(),
                 rents.getRentDate(),
                 rents.getReturnDate()

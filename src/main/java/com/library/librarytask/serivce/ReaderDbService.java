@@ -1,6 +1,5 @@
 package com.library.librarytask.serivce;
 
-import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.Reader;
 import com.library.librarytask.exceptions.ReaderException;
 import com.library.librarytask.repository.ReaderRepository;

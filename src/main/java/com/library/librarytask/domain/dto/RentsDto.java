@@ -2,12 +2,14 @@ package com.library.librarytask.domain.dto;
 
 import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.Reader;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
+@AllArgsConstructor
 public class RentsDto {
 
     private long id;

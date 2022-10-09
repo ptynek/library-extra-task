@@ -1,10 +1,8 @@
 package com.library.librarytask.serivce;
 
-import com.library.librarytask.controller.TaskNotFoundException;
 import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.exceptions.CopyBookException;
 import com.library.librarytask.repository.CopyBookRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

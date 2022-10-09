@@ -24,20 +24,22 @@ class RentsTest {
     @Autowired
     private StatusRepository statusRepository;
 
+
+
     @Test
     void testAddRent(){
         Title title = new Title("Title 1", "Author 1", 2000);
         Status status = new Status("Available");
         CopyBook copybook = new CopyBook(title, status);
         Reader reader = new Reader("John", "Smith", LocalDate.now().minusDays(7));
-        List<CopyBook> copyBooks = List.of(copybook);
-        Rents rents = new Rents(copyBooks, reader, LocalDate.now(), null);
+        Rents rents = new Rents(copybook, reader, LocalDate.now(), null);
 
+        readerRepository.save(reader);
         titleRepository.save(title);
         statusRepository.save(status);
         copyBookRepository.save(copybook);
-        readerRepository.save(reader);
         rentsRepository.save(rents);
+
         long titleId = title.getId();
         long statusId = status.getId();
         long copybookId = copybook.getId();
@@ -45,11 +47,11 @@ class RentsTest {
         long rentId = rents.getId();
 
         assertEquals(1, rentsRepository.findAll().size());
-
+/*
         rentsRepository.deleteById(rentId);
         readerRepository.deleteById(readerId);
         copyBookRepository.deleteById(copybookId);
         titleRepository.deleteById(titleId);
-        statusRepository.deleteById(statusId);
+        statusRepository.deleteById(statusId);*/
     }
 }

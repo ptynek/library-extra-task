@@ -1,5 +1,7 @@
 package com.library.librarytask.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -13,11 +15,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "reader")
+@Entity(name = "READER")
 public class Reader {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @Column(name = "ID", unique = true)
     private long id;
 
     @Column(name = "FIRST_NAME")
@@ -26,6 +30,7 @@ public class Reader {
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @JsonIgnore
     @Column(name = "ACCOUNT_CREATED")
     private LocalDate accountCreated;
 

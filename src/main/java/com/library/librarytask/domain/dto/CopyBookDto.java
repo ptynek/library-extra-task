@@ -1,5 +1,7 @@
 package com.library.librarytask.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.library.librarytask.domain.Rents;
 import com.library.librarytask.domain.Title;
 import com.library.librarytask.domain.Status;
@@ -12,10 +14,16 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CopyBookDto {
 
+    @JsonProperty("ID")
     private long id;
+    @JsonProperty("Title")
     private Title title;
+    @JsonProperty("Status")
     private Status status;
-    private List<Rents> rentsList;
+
+
+
 }

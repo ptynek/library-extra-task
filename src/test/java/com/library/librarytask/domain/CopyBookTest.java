@@ -40,9 +40,9 @@ class CopyBookTest {
                 () -> assertTrue(statusRepository.existsById(idStatus))
         );
 
-        copyBookRepository.deleteById(idCopybook);
+       /* copyBookRepository.deleteById(idCopybook);
         titleRepository.deleteById(idTitle);
-        statusRepository.deleteById(idStatus);
+        statusRepository.deleteById(idStatus);*/
 
     }
 }
