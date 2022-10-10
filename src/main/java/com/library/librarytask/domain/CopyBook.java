@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "COPYBOOK")
-
 public class CopyBook {
 
     @Id

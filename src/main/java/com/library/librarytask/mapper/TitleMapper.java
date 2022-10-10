@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 public class TitleMapper {
 
-    public Title mapToTile(final TitleDto titleDto){
+    public Title mapToTitle(final TitleDto titleDto){
         return new Title(
                 titleDto.getId(),
                 titleDto.getTitle(),

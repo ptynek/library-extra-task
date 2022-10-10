@@ -7,6 +7,7 @@ import com.library.librarytask.domain.Title;
 import com.library.librarytask.domain.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CopyBookDto {
 
@@ -24,6 +26,8 @@ public class CopyBookDto {
     @JsonProperty("Status")
     private Status status;
 
-
-
+    public CopyBookDto(Title title, Status status) {
+        this.title = title;
+        this.status = status;
+    }
 }

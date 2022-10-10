@@ -36,7 +36,7 @@ public class Title {
             targetEntity = CopyBook.class,
             mappedBy = "status",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     private List<CopyBook> copyBooksList;
 

@@ -1,10 +1,8 @@
 package com.library.librarytask.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.library.librarytask.adapter.LocalDateAdapter;
-import com.library.librarytask.domain.dto.ReaderCreateDto;
-import com.library.librarytask.domain.dto.ReaderDto;
+import com.library.librarytask.domain.dto.TitleDto;
+import com.library.librarytask.serivce.TitleDbService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +13,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ReaderControllerTest {
+class TitleControllerTest {
 
     private static int testCounter = 0;
 
@@ -43,18 +41,15 @@ class ReaderControllerTest {
     }
 
     @Test
-    @DisplayName("Create reader")
-    void testCreateUser() throws Exception{
-        ReaderCreateDto readerCreateDto = new ReaderCreateDto("Sarah", "Jones");
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-                .create();
-        String jsonContent = gson.toJson(readerCreateDto);
+    @DisplayName("Add title")
+    void testAddTitle() throws Exception{
+        TitleDto titleDto = new TitleDto("Title 1", "Author 1", 2020);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(titleDto);
 
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/v1/readers")
+                        .post("/v1/titles")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
@@ -62,48 +57,47 @@ class ReaderControllerTest {
     }
 
     @Test
-    @DisplayName("Get all readers")
-    void testShouldGetAllReaders() throws Exception{
-
+    @DisplayName("Get all titles")
+    void testShouldGetAllTitles() throws Exception{
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/readers")
+                        .get("/v1/titles")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)));
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
     }
 
     @Test
-    @DisplayName("Get reader with specific id")
-    void testShouldGetUserWithSpecificId() throws Exception{
+    @DisplayName("Get title with specific id")
+    void testGetTitleWithSpecificId() throws Exception{
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/readers/1")
+                        .get("/v1/titles/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName", Matchers.is("Jan")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName", Matchers.is("Nowak")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Title 1")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.author", Matchers.is("Author 1")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear", Matchers.is(2020)));
     }
 
     @Test
-    @DisplayName("Update reader")
-    void testUpdateUser() throws Exception{
-        ReaderDto reader = new ReaderDto(1,"Jan", "Nowak");
+    @DisplayName("Update title")
+    void testUpdateTitle() throws Exception{
+        TitleDto updatedTitle = new TitleDto(1, "Updated Title", "Updated Author", 2021);
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(reader);
+        String jsonContent = gson.toJson(updatedTitle);
 
-        mockMvc.perform(MockMvcRequestBuilders
-                .put("/v1/readers")
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(jsonContent))
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put("/v1/titles")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName", Matchers.is("Jan")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName", Matchers.is("Nowak")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Updated Title")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.author", Matchers.is("Updated Author")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear", Matchers.is(2021)));
     }
-
-
-
 }
