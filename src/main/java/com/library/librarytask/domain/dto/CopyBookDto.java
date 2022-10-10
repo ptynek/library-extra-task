@@ -16,14 +16,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class CopyBookDto {
 
-    @JsonProperty("ID")
     private long id;
-    @JsonProperty("Title")
     private Title title;
-    @JsonProperty("Status")
+
     private Status status;
 
     public CopyBookDto(Title title, Status status) {

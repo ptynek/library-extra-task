@@ -39,8 +39,6 @@ class CopyBookControllerTest {
     private StatusDbService service;
     @Autowired
     private CopyBookController copyBookController;
-    @Autowired
-    private TitleMapper titleMapper;
 
 
     @BeforeEach
@@ -58,14 +56,15 @@ class CopyBookControllerTest {
         System.out.println("All tests are finished");
     }
 
+
+
     @Test
     @DisplayName("Add copybook")
     void testAddCopybook() throws Exception{
-        CopyBookDto copyBookDto = new CopyBookDto();
-        List<Long> copybook = List.of(1L);
-        service.updateStatus(service.getStatus(4), copybook);
+        CopyBookDto copyBookDto = new CopyBookDto(titleDbService.getTitle(1), service.getStatus(4));
         Gson gson = new Gson();
         String jsonContent = gson.toJson(copyBookDto);
+        System.out.println(jsonContent);
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -74,6 +73,5 @@ class CopyBookControllerTest {
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
     }
 }
