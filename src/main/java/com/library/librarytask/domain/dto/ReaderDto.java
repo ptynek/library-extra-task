@@ -2,10 +2,12 @@ package com.library.librarytask.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class ReaderDto {
 
@@ -14,4 +16,8 @@ public class ReaderDto {
     private String lastName;
 
 
+    public ReaderDto(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

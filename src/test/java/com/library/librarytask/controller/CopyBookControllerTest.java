@@ -1,13 +1,7 @@
 package com.library.librarytask.controller;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.library.librarytask.domain.CopyBook;
-import com.library.librarytask.domain.Status;
-import com.library.librarytask.domain.Title;
 import com.library.librarytask.domain.dto.CopyBookDto;
-import com.library.librarytask.mapper.TitleMapper;
 import com.library.librarytask.serivce.StatusDbService;
 import com.library.librarytask.serivce.TitleDbService;
 import org.hamcrest.Matchers;
@@ -20,9 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,8 +28,8 @@ class CopyBookControllerTest {
     private TitleDbService titleDbService;
     @Autowired
     private StatusDbService service;
-    @Autowired
-    private CopyBookController copyBookController;
+
+
 
 
     @BeforeEach
@@ -48,7 +39,7 @@ class CopyBookControllerTest {
     }
     @BeforeAll
     static void beforeAll(){
-        System.out.println("Preparing to start Reader Controller tests");
+        System.out.println("Preparing to start Copybook Controller tests");
     }
 
     @AfterAll
@@ -64,7 +55,6 @@ class CopyBookControllerTest {
         CopyBookDto copyBookDto = new CopyBookDto(titleDbService.getTitle(1), service.getStatus(4));
         Gson gson = new Gson();
         String jsonContent = gson.toJson(copyBookDto);
-        System.out.println(jsonContent);
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -74,4 +64,29 @@ class CopyBookControllerTest {
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
+
+    @Test
+    @DisplayName("Get copybook with specific ID")
+    void testGetCopybook() throws Exception{
+        mockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/v1/copybooks/22")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(22)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.status.id", Matchers.is(4)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title.id", Matchers.is(1)));
+    }
+
+    @Test
+    @DisplayName("Get all copybooks")
+    void testGetAllCopybooks() throws Exception{
+        mockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/v1/copybooks")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
+    }
+
 }

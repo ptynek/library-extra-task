@@ -3,8 +3,10 @@ package com.library.librarytask.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.library.librarytask.adapter.LocalDateAdapter;
+import com.library.librarytask.domain.Reader;
 import com.library.librarytask.domain.dto.ReaderCreateDto;
 import com.library.librarytask.domain.dto.ReaderDto;
+import com.library.librarytask.serivce.ReaderDbService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ class ReaderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private ReaderDbService readerDbService;
 
 
     @BeforeEach
@@ -89,7 +93,7 @@ class ReaderControllerTest {
     @Test
     @DisplayName("Update reader")
     void testUpdateUser() throws Exception{
-        ReaderDto reader = new ReaderDto(1,"Jan", "Nowak");
+        ReaderDto reader = new ReaderDto(1L, "Jan", "Nowak");
         Gson gson = new Gson();
         String jsonContent = gson.toJson(reader);
 

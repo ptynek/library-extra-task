@@ -41,6 +41,4 @@ public class Reader {
         this.accountCreated = LocalDate.now();
     }
 
-
-
 }

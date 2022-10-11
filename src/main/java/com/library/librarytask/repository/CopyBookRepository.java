@@ -28,12 +28,5 @@ public interface CopyBookRepository  extends CrudRepository<CopyBook, Long> {
     @Override
     CopyBook save(CopyBook copyBook);
 
-    @Modifying
-    @Query("update COPYBOOK c set c.title =:title where c.id = :copybook")
-    int updateCopybookByTitleId(final List<Long> copybook, final List<Long> title);
-
-    @Modifying
-    @Query("update COPYBOOK c set c.status =:status where c.id = :copybook")
-    int updateCopybookByStatusId(final List<Long> copybook, final List<Long> status);
 
 }

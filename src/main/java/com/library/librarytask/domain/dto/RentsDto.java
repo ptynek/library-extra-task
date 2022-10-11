@@ -4,12 +4,14 @@ import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.Reader;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class RentsDto {
 
     private long id;
@@ -19,16 +21,16 @@ public class RentsDto {
     private LocalDate returnDate;
 
 
-    public RentsDto(CopyBook copyBook, Reader reader) {
+    public RentsDto(CopyBook copyBook, Reader reader, LocalDate rentDate, LocalDate returnDate) {
         this.copyBook = copyBook;
-        this.reader = reader;
-        this.rentDate = LocalDate.now();
-    }
-
-    public RentsDto(long id, Reader reader, LocalDate rentDate, LocalDate returnDate) {
-        this.id = id;
         this.reader = reader;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
+    }
+
+    public RentsDto(CopyBook copyBook, Reader reader, LocalDate rentDate) {
+        this.copyBook = copyBook;
+        this.reader = reader;
+        this.rentDate = rentDate;
     }
 }
