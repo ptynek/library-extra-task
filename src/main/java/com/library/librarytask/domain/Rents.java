@@ -1,7 +1,5 @@
 package com.library.librarytask.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 
 @NoArgsConstructor
@@ -41,17 +37,4 @@ public class Rents {
     @Column(name = "RETURN_DATE")
     private LocalDate returnDate;
 
-    public Rents(long id, Reader reader, LocalDate rentDate, LocalDate returnDate) {
-        this.id = id;
-        this.reader = reader;
-        this.rentDate = rentDate;
-        this.returnDate = returnDate;
-    }
-
-    public Rents(CopyBook copybook, Reader reader, LocalDate rentDate, LocalDate returnDate) {
-        this.copybook = copybook;
-        this.reader = reader;
-        this.rentDate = rentDate;
-        this.returnDate = returnDate;
-    }
 }

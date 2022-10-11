@@ -3,13 +3,11 @@ package com.library.librarytask.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.library.librarytask.adapter.LocalDateAdapter;
-import com.library.librarytask.domain.dto.ReaderDto;
 import com.library.librarytask.domain.dto.RentsDto;
 import com.library.librarytask.serivce.CopyBookDbService;
 import com.library.librarytask.serivce.ReaderDbService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,8 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -84,7 +80,6 @@ class RentsControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
     }
-
     @Test
     @DisplayName("Get rent with specific ID")
     void testGetRentWithSpecificId() throws Exception{
@@ -98,6 +93,21 @@ class RentsControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.returnDate", Matchers.nullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.copyBook.id", Matchers.is(22)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.reader.id", Matchers.is(1)));
+    }
+
+    @Test
+    @DisplayName("Return book")
+    void testReturnBook() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders
+                .put("/v1/rents/returnBook/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/v1/rents/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.returnDate", Matchers.is("2022-10-11")));
     }
 
 

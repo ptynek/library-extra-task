@@ -1,16 +1,11 @@
 package com.library.librarytask.controller;
 
-import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.Status;
-import com.library.librarytask.domain.dto.CopyBookDto;
 import com.library.librarytask.domain.dto.StatusDto;
 import com.library.librarytask.exceptions.StatusException;
-import com.library.librarytask.mapper.CopyBookMapper;
 import com.library.librarytask.mapper.StatusMapper;
-import com.library.librarytask.serivce.CopyBookDbService;
 import com.library.librarytask.serivce.StatusDbService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +19,6 @@ public class StatusController {
 
     private final StatusDbService statusDbService;
     private final StatusMapper statusMapper;
-
 
     @GetMapping
     public ResponseEntity<List<StatusDto>> getStatuses(){

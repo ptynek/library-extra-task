@@ -2,15 +2,11 @@ package com.library.librarytask.controller;
 
 import com.google.gson.Gson;
 import com.library.librarytask.domain.CopyBook;
-import com.library.librarytask.domain.dto.CopyBookDto;
 import com.library.librarytask.domain.dto.StatusDto;
-import com.library.librarytask.mapper.CopyBookMapper;
-import com.library.librarytask.repository.CopyBookRepository;
 import com.library.librarytask.serivce.CopyBookDbService;
 import com.library.librarytask.serivce.StatusDbService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +17,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 class StatusControllerTest {
@@ -86,7 +81,6 @@ class StatusControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status", Matchers.is("Available")));
     }
-
     @Test
     @DisplayName("Update status in copybook")
     void testUpdateStatusInCopybook() throws Exception{

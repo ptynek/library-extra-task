@@ -1,12 +1,10 @@
 package com.library.librarytask.domain;
 
 
-import com.library.librarytask.domain.CopyBook;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.*;
 
 
 @AllArgsConstructor

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +14,4 @@ public class ReaderDto {
     private String firstName;
     private String lastName;
 
-
-    public ReaderDto(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }

@@ -2,7 +2,6 @@ package com.library.librarytask.controller;
 
 import com.google.gson.Gson;
 import com.library.librarytask.domain.dto.TitleDto;
-import com.library.librarytask.serivce.TitleDbService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 class TitleControllerTest {
@@ -23,7 +20,6 @@ class TitleControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
 
     @BeforeEach
     void beforeEach(){

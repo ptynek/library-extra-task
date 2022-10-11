@@ -1,13 +1,10 @@
 package com.library.librarytask.controller;
 
 import com.library.librarytask.domain.CopyBook;
-import com.library.librarytask.domain.Title;
 import com.library.librarytask.domain.dto.CopyBookDto;
-import com.library.librarytask.domain.dto.TitleDto;
 import com.library.librarytask.exceptions.CopyBookException;
 import com.library.librarytask.mapper.CopyBookMapper;
 import com.library.librarytask.serivce.CopyBookDbService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

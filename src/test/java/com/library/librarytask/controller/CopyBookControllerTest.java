@@ -29,9 +29,6 @@ class CopyBookControllerTest {
     @Autowired
     private StatusDbService service;
 
-
-
-
     @BeforeEach
     void beforeEach(){
         testCounter ++;
@@ -46,8 +43,6 @@ class CopyBookControllerTest {
     static void afterAll() {
         System.out.println("All tests are finished");
     }
-
-
 
     @Test
     @DisplayName("Add copybook")

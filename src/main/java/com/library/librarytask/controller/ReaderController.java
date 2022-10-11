@@ -7,10 +7,8 @@ import com.library.librarytask.exceptions.ReaderException;
 import com.library.librarytask.mapper.ReaderMapper;
 import com.library.librarytask.serivce.ReaderDbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

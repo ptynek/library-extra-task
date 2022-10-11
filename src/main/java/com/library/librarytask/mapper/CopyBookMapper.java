@@ -2,7 +2,6 @@ package com.library.librarytask.mapper;
 
 import com.library.librarytask.domain.CopyBook;
 import com.library.librarytask.domain.dto.CopyBookDto;
-import com.library.librarytask.serivce.CopyBookDbService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

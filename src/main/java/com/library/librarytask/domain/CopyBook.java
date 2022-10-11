@@ -1,8 +1,5 @@
 package com.library.librarytask.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,10 +30,6 @@ public class CopyBook {
     private Status status;
 
 
-    public CopyBook(Title title, Status status) {
-        this.title = title;
-        this.status = status;
-    }
 
 
 }

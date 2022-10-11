@@ -1,9 +1,6 @@
 package com.library.librarytask.serivce;
 
 import com.library.librarytask.domain.CopyBook;
-import com.library.librarytask.domain.Title;
-import com.library.librarytask.domain.dto.CopyBookDto;
-import com.library.librarytask.domain.dto.TitleDto;
 import com.library.librarytask.exceptions.CopyBookException;
 import com.library.librarytask.repository.CopyBookRepository;
 import lombok.RequiredArgsConstructor;
